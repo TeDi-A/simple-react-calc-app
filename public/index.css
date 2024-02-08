@@ -1,9 +1,9 @@
-
-
 .calc-display {
     border: 1px solid grey;
-    height: 60px;
+    /* height: fit-content; */
     width: 275px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .square {
@@ -27,7 +27,12 @@
     display: table;
 }
 
-.AC {
-    width: 70px;
-    background-color: red;
+.input-row{
+    color: blue;
+    height: 26px;
+}
+
+.output-row{
+    color: green;
+    height: 26px;
 }

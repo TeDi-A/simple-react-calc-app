@@ -1,82 +1,139 @@
 import { useState } from "react";
 
 function CalcApp() {
+
+    let [digits, setDigits] = useState([])
+    const [result, setResult] = useState('');
+
     function handleButtonPress(value) {
-        console.log(value)
+        if (value === '=') {
+            handleComputeCalc();
+        } else {
+            setDigits([...digits, value]);
+        }
+    }
+
+    function handleClearScreen() {
+        setDigits('');
+        setResult('');
+    }
+
+    function handleSingleDelete() {
+        setDigits([...digits.slice(0, -1)]);
+        setResult('');
+    }
+
+    function handleComputeCalc() {
+        let finalOutput = eval(digits.join(''));
+        setResult(finalOutput.toString());
+        setDigits('');
     }
 
     return (
         <>
-            <DisplayScreen />
-            <OpButtons
+            <DisplayScreen
+                inputValue={digits}
+                outputValue={result}
+            />
+            <KeyPad
                 handleOnClick={handleButtonPress}
+                clearScreen={handleClearScreen}
+                singleDelete={handleSingleDelete}
+                computeCalc={handleComputeCalc}
+                input={digits}
             />
         </>
     )
 }
 
 
-function DisplayScreen() {
+function DisplayScreen({ inputValue, outputValue }) {
     return (
         <>
             <div className="calc-display">
-                <DisplayRow />
-                <DisplayRow />
+                <InputRow inputVal={inputValue} />
+                <OutputRow outputVal={outputValue} />
             </div>
         </>
     )
 }
 
-function DisplayRow() {
+function InputRow({ inputVal }) {
+    return (
+        <div className="input-row">
+            <>{inputVal}</>
+        </div>
+    )
 
-    // const [digits, setDigits] = useState([])
+}
+function OutputRow({ outputVal }) {
+    return (
+        <div className="output-row">
+            <>{outputVal}</>
+        </div>
+    )
 
 }
 
-function Square({ value, onButtonPress }) {
+function NumButtons({ value, onButtonPress }) {
     return (
         <button
             className="square"
-            onClick={()=>onButtonPress(value)}
+            onClick={() => onButtonPress(value)}
         >
             {value}
         </button>
     );
 }
 
-function OpButtons({ handleOnClick }) {
+function OpButtons({ value, onButtonPress }) {
+    return (
+        <button
+            className="square"
+            onClick={() => onButtonPress(value)}
+        >
+            {value}
+        </button>
+    );
+}
+
+
+function KeyPad({ handleOnClick, clearScreen, singleDelete, computeCalc, input }) {
     return (
         <>
             <div className="key-row">
-                <Square value={"AC"} onButtonPress={handleOnClick} />
-                <Square value={"Del"} onButtonPress={handleOnClick} />
-                <Square />
-                <Square value={"+"} onButtonPress={handleOnClick} />
-            </div>
-            <div className="key-row">
-                <Square value={7} onButtonPress={handleOnClick} />
-                <Square value={8} onButtonPress={handleOnClick} />
-                <Square value={9} onButtonPress={handleOnClick} />
-                <Square value={"-"} onButtonPress={handleOnClick} />
-            </div>
-            <div className="key-row">
-                <Square value={4} onButtonPress={handleOnClick} />
-                <Square value={5} onButtonPress={handleOnClick} />
-                <Square value={6} onButtonPress={handleOnClick} />
-                <Square value={"*"} onButtonPress={handleOnClick} />
-            </div>
-            <div className="key-row">
-                <Square value={1} onButtonPress={handleOnClick} />
-                <Square value={2} onButtonPress={handleOnClick} />
-                <Square value={3} onButtonPress={handleOnClick} />
-                <Square value={"/"} onButtonPress={handleOnClick} />
-            </div>
-            <div className="key-row">
-                <Square value={"."} onButtonPress={handleOnClick} />
-                <Square value={0} onButtonPress={handleOnClick} />
-                <Square />
-                <Square value={"="} onButtonPress={handleOnClick} />
+                <button className="square" value={"AC"}
+                    onClick={clearScreen}>AC</button>
+                <button className="square" value={"Del"}
+                    onClick={singleDelete}>Del</button>
 
+                <NumButtons />
+                <OpButtons value={"+"} onButtonPress={handleOnClick} />
+            </div>
+            <div className="key-row">
+                <NumButtons value={7} onButtonPress={handleOnClick} />
+                <NumButtons value={8} onButtonPress={handleOnClick} />
+                <NumButtons value={9} onButtonPress={handleOnClick} />
+                <OpButtons value={"-"} onButtonPress={handleOnClick} />
+            </div>
+            <div className="key-row">
+                <NumButtons value={4} onButtonPress={handleOnClick} />
+                <NumButtons value={5} onButtonPress={handleOnClick} />
+                <NumButtons value={6} onButtonPress={handleOnClick} />
+                <OpButtons value={"*"} onButtonPress={handleOnClick} />
+            </div>
+            <div className="key-row">
+                <NumButtons value={1} onButtonPress={handleOnClick} />
+                <NumButtons value={2} onButtonPress={handleOnClick} />
+                <NumButtons value={3} onButtonPress={handleOnClick} />
+                <OpButtons value={"/"} onButtonPress={handleOnClick} />
+            </div>
+            <div className="key-row">
+                <NumButtons value={"."} onButtonPress={handleOnClick} />
+                <NumButtons value={0} onButtonPress={handleOnClick} />
+                <NumButtons />
+                <button className="square"
+                    onClick={() => computeCalc(input)}>=</button>
             </div>
         </>
     )
@@ -88,4 +145,4 @@ function OpButtons({ handleOnClick }) {
 // 4. Number click display
 // 5. Operations
 
-export { CalcApp, DisplayScreen, OpButtons, DisplayRow }
+export { CalcApp, InputRow, KeyPad, DisplayScreen }

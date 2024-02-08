@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CalcApp, DisplayScreen, OpButtons } from "./CalcApp";
+import { CalcApp, InputRow, OpButtons } from "./CalcApp";
 
 function App() {
     return (
