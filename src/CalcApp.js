@@ -5,7 +5,7 @@ function CalcApp() {
     const [result, setResult] = useState('');
 
     let finalOutput
-    const operators = ['+', '-', '*', '/'];
+    const operators = ['+', '-', '*', '/', '.'];
 
     function handleClearScreen() {
         setDigits([]);
