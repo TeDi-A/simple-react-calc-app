@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/TeDi-A/simple-react-calc-app.github.io/static/js/main.1fcfd79d.js",
-    "index.html": "/TeDi-A/simple-react-calc-app.github.io/index.html",
-    "main.1fcfd79d.js.map": "/TeDi-A/simple-react-calc-app.github.io/static/js/main.1fcfd79d.js.map"
+    "main.js": "/TeDi-A.github.io/simple-react-calc-app/static/js/main.1fcfd79d.js",
+    "index.html": "/TeDi-A.github.io/simple-react-calc-app/index.html",
+    "main.1fcfd79d.js.map": "/TeDi-A.github.io/simple-react-calc-app/static/js/main.1fcfd79d.js.map"
   },
   "entrypoints": [
     "static/js/main.1fcfd79d.js"
