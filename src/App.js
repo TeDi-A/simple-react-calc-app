@@ -6,7 +6,7 @@ function App() {
         <>
             <h1>Dynamic Output Calculator</h1>
             <CalcApp />
-            <h4>By Divine</h4>
+            <h4>Hello Weyinmiiii</h4>
         </>
     )
 }
