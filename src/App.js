@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { CalcApp, InputRow, OpButtons } from "./CalcApp";
+import React from "react";
+import { CalcApp} from "./CalcApp";
 
 function App() {
     return (
