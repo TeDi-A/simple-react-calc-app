@@ -1,11 +1,12 @@
 import React from "react";
-import { CalcApp} from "./CalcApp";
+import { CalcApp } from "./CalcApp";
 
 function App() {
     return (
         <>
-        <h1>Make Input!</h1>
+            <h1>Dynamic Output Calculator</h1>
             <CalcApp />
+            <h4>By Divine</h4>
         </>
     )
 }

@@ -19,13 +19,11 @@ function CalcApp() {
             const lastCharacter = delDigits[delDigits.length - 1];
             const operatorIndex = delDigits.findIndex(char => operators.includes(char));
             try {
-                if (operatorCount === 1 && !isNaN(lastCharacter)) {
+                if (operatorCount >= 1 && !isNaN(lastCharacter)) {
                     const finalOutput = eval(delDigits.join('')).toString();
                     setResult(finalOutput);
                 } else if (operatorCount <= 1 && isNaN(delDigits[operatorIndex + 1])) {
-
                     setResult('');
-
                 }
             } catch (error) {
                 console.log("Error occurred while evaluating expression");
@@ -43,13 +41,19 @@ function CalcApp() {
                 setDigits([finalOutput]);
                 setResult('');
             } else {
-                const newDigits = [...digits, value];
-                setDigits(newDigits);
+                if (operators.includes(digits[digits.length - 1]) && operators.includes(value)) {
+                    const newDigits = [...digits.slice(0, -1), value];
+                    setDigits(newDigits);
+                } else {
 
-                const expression = newDigits.join('');
-                if (isValidExpression(expression)) {
-                    finalOutput = eval(expression).toString();
-                    setResult(finalOutput);
+                    const newDigits = [...digits, value];
+                    setDigits(newDigits);
+
+                    const expression = newDigits.join('');
+                    if (isValidExpression(expression)) {
+                        finalOutput = eval(expression).toString();
+                        setResult(finalOutput);
+                    }
                 }
             }
         } catch (error) {
