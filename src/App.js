@@ -1,5 +1,5 @@
 import React from "react";
-import { CalcApp } from "./CalcApp";
+import { CalcApp } from "./components/CalcApp";
 
 function App() {
     return (

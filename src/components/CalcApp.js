@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./index.css"
 
 function CalcApp() {
     const [digits, setDigits] = useState([]);
